@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import random
 import plotly.express as px
 import plotly.graph_objects as go
 
@@ -42,3 +43,8 @@ def plot_ability_distribution_by_sex(df):
 
     # Show plot
     fig.show()
+
+def make_applicants_df_with_preferences(male_a, female_a, school_names, seed):
+    applicants_df = make_applicants_df(male_a, female_a, seed)
+    applicants_df['school_preference'] = applicants_df.apply(lambda x: random.sample(school_names, len(school_names)), axis=1)
+    return applicants_df
